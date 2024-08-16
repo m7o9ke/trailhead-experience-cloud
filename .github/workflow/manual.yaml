@@ -1,0 +1,8 @@
+name: CI on PR
+on: workflow_dispatch
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout source code'
+              uses: actions/checkout@v4
