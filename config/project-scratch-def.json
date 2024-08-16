@@ -1,0 +1,17 @@
+{
+  "orgName": "[TEST] Experience Cloud",
+  "edition": "Enterprise",
+  "hasSampleData": true,
+  "features": ["Communities", "SalesUser", "EnableSetPasswordInApi"],
+  "settings": {
+    "communitiesSettings": {
+      "enableNetworksEnabled": true
+    },
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    }
+  }
+}
