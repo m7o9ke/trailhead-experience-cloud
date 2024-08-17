@@ -4,7 +4,7 @@ jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Install NodeJS Version 16'
+      - name: 'Install NodeJS Version 16's
         uses: actions/setup-node@v3
         with:
           node-version: 20
@@ -29,6 +29,9 @@ jobs:
 
       - name: 'Authenticate Target Org'
         run: sf org login sfdx-url --sfdx-url-file ./TARGET_ORG_SFDX_URL.txt --alias production-org
+      
+      - name: 'Deploy package.xml'
+        run: sf project deploy start --manifest ./manifest/package.xml
 
       - name: 'Remove auth file'
         run: rm -f ./TARGET_ORG_SFDX_URL.txt
