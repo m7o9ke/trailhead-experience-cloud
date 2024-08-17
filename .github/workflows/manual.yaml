@@ -1,4 +1,4 @@
-name: CI on PR
+name: Manual Test and Deploy
 on: workflow_dispatch
 jobs:
   checkout:
@@ -25,9 +25,9 @@ jobs:
             echo "Missing TARGET_ORG_SFDX_URL secret.";
             exit 1;
           fi
+
       - name: 'Authenticate Target Org'
         run: sf org login sfdx-url --sfdx-url-file ./TARGET_ORG_SFDX_URL.txt --alias production-org
-      
+
       - name: 'Remove auth file'
         run: rm -f ./TARGET_ORG_SFDX_URL.txt
-      
