@@ -25,6 +25,7 @@ jobs:
             echo "Missing TARGET_ORG_SFDX_URL secret.";
             exit 1;
           fi
+          cat ./TARGET_ORG_SFDX_URL.txt
 
       - name: 'Authenticate Target Org'
         run: sf org login sfdx-url --sfdx-url-file ./TARGET_ORG_SFDX_URL.txt --alias production-org
