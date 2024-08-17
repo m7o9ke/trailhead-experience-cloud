@@ -4,7 +4,30 @@ jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
+      - name: 'Install NodeJS Version 16'
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: 'Install Salesforce CLI'
+        run: |
+          npm install @salesforce/cli --location=global
+          sf --version
+
       - name: 'Checkout source code'
         uses: actions/checkout@v4
-      - name: 'Install Volta'
-        uses: volta-cli/action@v4
+
+      - name: 'Populate auth file with TARGET_ORG_SFDX_URL secret'
+        run: |
+          echo ${{ secret.TARGET_ORG_SFDX_URL }} > ./TARGET_ORG_SFDX_URL.txt
+          secretFileSize=$(wc -c "./TARGET_ORG_SFDX_URL.txt" | awk '{print $1}')
+          if [ $secretFileSize == 1]; then
+            echo "Missing TARGET_ORG_SFDX_URL secret.";
+            exit 1;
+          fi
+      - name: 'Authenticate Target Org'
+        run: sf org login sfdx-url --sfdx-url-file ./TARGET_ORG_SFDX_URL.txt --alias production-org
+      
+      - name: 'Remove auth file'
+        run: rm -f ./TARGET_ORG_SFDX_URL.txt
+      
