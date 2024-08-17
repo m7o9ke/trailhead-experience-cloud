@@ -7,7 +7,7 @@ jobs:
       - name: 'Install NodeJS Version 16'
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
 
       - name: 'Install Salesforce CLI'
         run: |
@@ -21,7 +21,7 @@ jobs:
         run: |
           echo ${{ secrets.TARGET_ORG_SFDX_URL }} > ./TARGET_ORG_SFDX_URL.txt
           secretFileSize=$(wc -c "./TARGET_ORG_SFDX_URL.txt" | awk '{print $1}')
-          if [ $secretFileSize == 1]; then
+          if [ $secretFileSize == 1 ]; then
             echo "Missing TARGET_ORG_SFDX_URL secret.";
             exit 1;
           fi
