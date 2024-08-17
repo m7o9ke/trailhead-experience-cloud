@@ -28,7 +28,7 @@ jobs:
           cat ./TARGET_ORG_SFDX_URL.txt
 
       - name: 'Authenticate Target Org'
-        run: sf org login sfdx-url --sfdx-url-file ./TARGET_ORG_SFDX_URL.txt --alias production-org
+        run: sf org login sfdx-url --sfdx-url-file ./TARGET_ORG_SFDX_URL.txt --alias production-org --set-default
       
       - name: 'Deploy package.xml'
         run: sf project deploy start --manifest ./manifest/package.xml
